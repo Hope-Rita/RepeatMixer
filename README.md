@@ -26,3 +26,8 @@ Three (i.e., random, historical, and inductive) negative sampling strategies can
 | LastFM    |  | 91.44 ± 0.05 | 94.14 ± 0.06|
 | Enron     | 91.15 ± 0.20   | 92.07 ± 0.07   |  92.66 ± 0.07|
 | UCI       | 95.85 ± 0.14   | 96.33 ± 0.14  | 96.74 ± 0.08|
+
+### Similarity based on features
+
+### Performance on historical and inductive settings
+
