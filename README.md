@@ -32,23 +32,23 @@ Three (i.e., random, historical, and inductive) negative sampling strategies can
 ### Similarity based on structural information
 We set the value of similarity based on structural information as 1 if they have common neighbors or have repeat behaviors, otherwise is set as 0. We calculate the average value of all positive pairs and negative pairs in the datasets.
 
-||recent NSS|Wiki|LastFM|UCI|
-|-|-|-|-|-|
-|pos|train|86.95|69.42|79.65|
-||valid|84.03|73.40|71.11|
-||test |84.03|73.51|73.33|
-|neg|train|0.25|7.19|14.53|
-||valid|0.0|7.52|6.66| 
-||test|0.84|8.76|2.22|
+||recent NSS|Wiki|LastFM|UCI| enron |
+|-|-|-|-|-| ----- |
+|pos|train|86.95|69.42|79.65|95.98 |
+||valid|84.03|73.40|71.11|93.62 |
+||test |84.03|73.51|73.33|93.62
+|neg|train|0.25|7.19|14.53|11.49 
+||valid|0.0|7.52|6.66| 8.51 
+||test|0.84|8.76|2.22|5.32 
 
-||repeat-aware NSS|Wiki|LastFM|UCI|
-|-|-|-|-|-|
-|pos|train|87.19|86.28|81.39|
-||valid|84.03|82.06|71.11|
-||test|84.03|82.06|73.33|
-|neg|train|1.23|17.70|11.05|
-||valid|0.0|12.78|6.66|
-||test|0.84|14.64|2.22|
+||repeat-aware NSS|Wiki|LastFM|UCI|enron |
+|-|-|-|-|-| ----- |
+|pos|train|87.19|86.28|81.39|98.27
+||valid|84.03|82.06|71.11|97.87 
+||test|84.03|82.06|73.33|97.87 
+|neg|train|1.23|17.70|11.05|15.23 
+||valid|0.0|12.78|6.66|10.64 
+||test|0.84|14.64|2.22| 9.57 
 
 ### Performance in random, historical, and inductive settings
 
