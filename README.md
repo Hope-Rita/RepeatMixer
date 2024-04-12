@@ -28,16 +28,16 @@ Three (i.e., random, historical, and inductive) negative sampling strategies can
 | UCI       | 95.85 ± 0.14   | 96.33 ± 0.14  | **96.74** ± 0.08 |
 
 ### Similarity based on features
-We calculate the similarity based on features on Wikipedia, Reddit, and MOOC since only these three datasets contain edge features. Specifically, we calculate the cosine similarity between node pairs based on their neighbors' edge feature sequences. We calculate the average value of all positive and negative pairs in the datasets.
+We calculate the similarity based on edge features on Wikipedia, Reddit, and MOOC since only these three datasets contain edge features. Specifically, we calculate the cosine similarity between node pairs based on their neighbors' edge feature sequences. We calculate the average value of all positive and negative pairs in the datasets.
 
 |      | recent NSS | Wikipedia | Reddit | MOOC |
 | ---- | ---------- | --------- | ------ | ---- |
-| pos  | train      | 15.73     |        |34.75|
-|      | valid      | 18.30     |        |40.82|
-|      | test       | 18.30     |        |40.82|
-| neg  | train      | 6.40      |        |12.80|
-|      | valid      | 4.16      |        |7.74|
-|      | test       | 4.14      |        |7.57|
+| pos  | train      | 15.73     | 16.83 |34.75|
+|      | valid      | 18.30     | 16.70 |40.82|
+|      | test       | 18.30     | 16.70 |40.82|
+| neg  | train      | 6.40      | 2.94 |12.80|
+|      | valid      | 4.16      | 2.64 |7.74|
+|      | test       | 4.14      | 2.69 |7.57|
 
 |      | repeat-aware NSS | Wikipedia | Reddit | MOOC |
 | ---- | ---------- | --------- | ------ | ---- |
@@ -51,7 +51,7 @@ We calculate the similarity based on features on Wikipedia, Reddit, and MOOC sin
 ### Similarity based on structural information
 We set the value of similarity based on structural information as 1 if they have common neighbors or have repeat behaviors, otherwise is set as 0. We calculate the average value of all positive and negative pairs in the datasets.
 
-||recent NSS|Wiki|LastFM|UCI| enron |
+||recent NSS|Wikipedia|LastFM|UCI| enron |
 |-|-|-|-|-| ----- |
 |pos|train|86.95|69.42|79.65|95.98 |
 ||valid|84.03|73.40|71.11|93.62 |
@@ -60,7 +60,7 @@ We set the value of similarity based on structural information as 1 if they have
 ||valid|0.0|7.52|6.66| 8.51 
 ||test|0.84|8.76|2.22|5.32 
 
-||repeat-aware NSS|Wiki|LastFM|UCI|enron |
+||repeat-aware NSS|Wikipedia|LastFM|UCI|Enron |
 |-|-|-|-|-| ----- |
 |pos|train|87.19|86.28|81.39|98.27
 ||valid|84.03|82.06|71.11|97.87 
