@@ -20,17 +20,36 @@ Three (i.e., random, historical, and inductive) negative sampling strategies can
 
 | Datasets  | FreeDyG         | RepeatMixer(F)  | RepeatMixer |
 | --------- | --------------- | --------------- | ----------- |
-| Wikipedia | 98.92 ± 0.02 | 99.00 ± 0.03 | 99.16 ± 0.02|
-| Reddit    | 99.25 ± 0.01 | 99.14 ± 0.01 | 99.22 ± 0.01|
-| MOOC      | 87.76 ± 0.68 | 84.95 ± 0.26 | 92.76 ± 0.10|
-| LastFM    | 92.15 ± 0.16 | 91.44 ± 0.05 | 94.14 ± 0.06|
-| Enron     | 91.15 ± 0.20   | 92.07 ± 0.07   |  92.66 ± 0.07|
-| UCI       | 95.85 ± 0.14   | 96.33 ± 0.14  | 96.74 ± 0.08|
+| Wikipedia | 98.92 ± 0.02 | 99.00 ± 0.03 | **99.16** ± 0.02 |
+| Reddit    | **99.25** ± 0.01 | 99.14 ± 0.01 | 99.22 ± 0.01|
+| MOOC      | 87.76 ± 0.68 | 84.95 ± 0.26 | **92.76** ± 0.10 |
+| LastFM    | 92.15 ± 0.16 | 91.44 ± 0.05 | **94.14** ± 0.06 |
+| Enron     | 91.15 ± 0.20   | 92.07 ± 0.07   | **92.66** ± 0.07 |
+| UCI       | 95.85 ± 0.14   | 96.33 ± 0.14  | **96.74** ± 0.08 |
 
 ### Similarity based on features
+We calculate the similarity based on features on Wikipedia, Reddit, and MOOC since only these three datasets contain edge features. Specifically, we calculate the cosine similarity between node pairs based on their neighbors' edge feature sequences. We calculate the average value of all positive and negative pairs in the datasets.
+
+|      | recent NSS | Wikipedia | Reddit | MOOC |
+| ---- | ---------- | --------- | ------ | ---- |
+| pos  | train      | 15.73     |        |34.75|
+|      | valid      | 18.30     |        |40.82|
+|      | test       | 18.30     |        |40.82|
+| neg  | train      | 6.40      |        |12.80|
+|      | valid      | 4.16      |        |7.74|
+|      | test       | 4.14      |        |7.57|
+
+|      | repeat-aware NSS | Wikipedia | Reddit | MOOC |
+| ---- | ---------- | --------- | ------ | ---- |
+| pos  | train      | 33.49 | 45.07  |66.95|
+|      | valid      | 34.02 |46.16|67.74|
+|      | test       | 34.02 |46.16|67.74|
+| neg  | train      | 6.70   |3.39|29.11|
+|      | valid      | 4.26   |2.95|12.00|
+|      | test       | 4.28     |2.99|12.03|
 
 ### Similarity based on structural information
-We set the value of similarity based on structural information as 1 if they have common neighbors or have repeat behaviors, otherwise is set as 0. We calculate the average value of all positive pairs and negative pairs in the datasets.
+We set the value of similarity based on structural information as 1 if they have common neighbors or have repeat behaviors, otherwise is set as 0. We calculate the average value of all positive and negative pairs in the datasets.
 
 ||recent NSS|Wiki|LastFM|UCI| enron |
 |-|-|-|-|-| ----- |
