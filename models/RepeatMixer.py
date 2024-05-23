@@ -11,8 +11,8 @@ from utils.utils import NeighborSampler, HistoricalNeighborSampler
 class RepeatMixer(nn.Module):
 
     def __init__(self, node_raw_features: np.ndarray, edge_raw_features: np.ndarray, neighbor_sampler: NeighborSampler,
-                 edge_neighbor_sampler: HistoricalNeighborSampler, reflect_table,
-                 time_feat_dim: int, num_tokens: int, num_layers: int = 2, token_dim_expansion_factor: float = 0.5,
+                 edge_neighbor_sampler: HistoricalNeighborSampler,
+                 time_feat_dim: int, num_tokens: int, high_order: bool=False, num_layers: int = 2, token_dim_expansion_factor: float = 0.5,
                  channel_dim_expansion_factor: float = 4.0, dropout: float = 0.1, device: str = 'cpu'):
         """
         TCL model.
@@ -31,7 +31,6 @@ class RepeatMixer(nn.Module):
 
         self.node_raw_features = torch.from_numpy(node_raw_features.astype(np.float32)).to(device)
         self.edge_raw_features = torch.from_numpy(edge_raw_features.astype(np.float32)).to(device)
-        self.reflect_table = reflect_table
         self.exist_edges = {}
 
         self.neighbor_sampler = neighbor_sampler
@@ -49,6 +48,7 @@ class RepeatMixer(nn.Module):
         self.channel_dim_expansion_factor = channel_dim_expansion_factor
         self.dropout = dropout
         self.device = device
+        self.high_order = high_order
 
         self.dropout_layer = nn.Dropout(self.dropout)
 
@@ -100,15 +100,17 @@ class RepeatMixer(nn.Module):
                                                                                    mask=mask,
                                                                                    num_neighbors=num_neighbors,
                                                                                    time_gap=time_gap)
-
-        high_order_embbeddings, pcc_two_hop = self.high_order_temporal_embeddings(node_src_ids=src_node_ids,
-                                                                                  node_dst_ids=dst_node_ids,
-                                                                                  node_interact_times=node_interact_times,
-                                                                                  num_neighbors=num_neighbors)
-        pcc_index = torch.softmax(torch.stack([pcc_one_hop, pcc_two_hop], dim=-1), dim=-1)
-        cat_embeddings = torch.stack([edge_embeddings, high_order_embbeddings], dim=1)
-        embeddings = (torch.matmul(pcc_index, cat_embeddings)).squeeze(dim=1)
-        return embeddings
+        if self.high_order:
+            high_order_embbeddings, pcc_two_hop = self.high_order_temporal_embeddings(node_src_ids=src_node_ids,
+                                                                                      node_dst_ids=dst_node_ids,
+                                                                                      node_interact_times=node_interact_times,
+                                                                                      num_neighbors=num_neighbors)
+            pcc_index = torch.softmax(torch.stack([pcc_one_hop, pcc_two_hop], dim=-1), dim=-1)
+            cat_embeddings = torch.stack([edge_embeddings, high_order_embbeddings], dim=1)
+            embeddings = (torch.matmul(pcc_index, cat_embeddings)).squeeze(dim=1)
+            return embeddings
+        else:
+            return edge_embeddings
 
 
     def high_order_temporal_embeddings(self, node_src_ids: np.ndarray,
