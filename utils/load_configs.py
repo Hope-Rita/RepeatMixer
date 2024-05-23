@@ -19,6 +19,7 @@ def get_link_prediction_args(is_evaluation: bool = False):
     parser.add_argument('--model_name', type=str, default='DynTrans', help='name of the model',
                         choices=['JODIE', 'edge_TGN',  'DyRep', 'TGAT', 'TGN', 'CAWN', 'TCL', 'RepeatMixer', 'GraphMixer', 'DyGFormer', 'FreeDyG', 'RNN'])
     parser.add_argument('--gpu', type=int, default=2, help='number of gpu to use')
+    parser.add_argument('--high_order', action='store_true', default=False, help='use high-order neighbors')
     parser.add_argument('--num_neighbors', type=int, default=20, help='number of neighbors to sample for each node')
     parser.add_argument('--sample_neighbor_strategy', default='recent', choices=['uniform', 'recent', 'time_interval_aware'], help='how to sample historical neighbors')
     parser.add_argument('--time_scaling_factor', default=1e-6, type=float, help='the hyperparameter that controls the sampling preference with time interval, '
