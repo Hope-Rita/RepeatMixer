@@ -164,7 +164,7 @@ if __name__ == "__main__":
             dynamic_backbone = RepeatMixer(node_raw_features=node_raw_features, edge_raw_features=edge_raw_features,
                                          neighbor_sampler=train_neighbor_sampler,
                                          # reflect_table=reflect_table,
-                                         reflect_table=None,
+                                         high_order=args.high_order,
                                          # edge_neighbor_sampler=train_edge_neighbor_sampler,
                                          edge_neighbor_sampler=historical_train_neighbor_sample,
                                          time_feat_dim=args.time_feat_dim, num_tokens=args.num_neighbors,
