@@ -27,7 +27,7 @@ def get_link_prediction_args(is_evaluation: bool = False):
                         'it works when sample_neighbor_strategy == time_interval_aware')
     parser.add_argument('--num_walk_heads', type=int, default=8, help='number of heads used for the attention in walk encoder')
     parser.add_argument('--num_heads', type=int, default=2, help='number of heads used in attention layer')
-    parser.add_argument('--num_layers', type=int, default=0, help='number of model layers')
+    parser.add_argument('--num_layers', type=int, default=2, help='number of model layers')
     parser.add_argument('--walk_length', type=int, default=1, help='length of each random walk')
     parser.add_argument('--time_gap', type=int, default=2000, help='time gap for neighbors to compute node features')
     parser.add_argument('--time_feat_dim', type=int, default=100, help='dimension of the time embedding')
