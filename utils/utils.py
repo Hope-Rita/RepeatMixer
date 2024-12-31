@@ -416,7 +416,7 @@ class HistoricalNeighborSampler:
 
             select_ids = select_ids + total.flatten()
 
-            select_ids = np.unique(select_ids[total >= 0])
+            select_ids = np.unique(select_ids[select_ids >= 0])
             return self.nodes_neighbor_ids[node_id][:i][select_ids], \
                    self.nodes_edge_ids[node_id][:i][select_ids], \
                    self.nodes_neighbor_times[node_id][:i][select_ids], None
